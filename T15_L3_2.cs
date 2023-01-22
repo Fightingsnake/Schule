@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,24 +36,31 @@ namespace T15_L3_2
         }
         static (int, double) RechtsLauf(int Position, double teiler, int laengeArray)
         {
-            teiler = teiler + teiler / 2;
-            Position = (int)(laengeArray * teiler);
+            teiler /= 2;
+            int naechster = (int)(laengeArray * teiler);
+            if ((int)(teiler * laengeArray) < 1)
+                naechster = 1;
+            Position += naechster;
             return (Position, teiler);
         }
         static (int, double) LinksLauf(int Position, double teiler, int laengeArray)
         {
-            teiler = teiler - teiler / 2;
-            Position = (int)(laengeArray * teiler);
+            teiler /= 2;
+            int naechster = (int)(laengeArray * teiler);
+            if ((int)(teiler * laengeArray)< 1)
+                naechster= 1;
+            Position -= naechster;
             return (Position, teiler);
         }
         static void Main(string[] args)
         {
-            int[] sortArray = new int[11];
+            int[] sortArray = new int[50];
             Random random = new Random();
             double naechsterSchritt = 0.5;
             for (int i = 0; i < sortArray.Length; i++)
             {
                 sortArray[i] = random.Next(1, 60);
+                Thread.Sleep(2);
             }
             Ausgabe(sortArray);
             SortArray(sortArray);
@@ -71,14 +78,14 @@ namespace T15_L3_2
                 }
                 else if (eingabe > sortArray[(int)position])
                 {
-                    Console.WriteLine($"alte position {position} ; alter teiler {naechsterSchritt}");
+                    Console.WriteLine($"alte position {(int)position} ; alter teiler {naechsterSchritt}");
                     (position, naechsterSchritt) = RechtsLauf((int)position, naechsterSchritt, sortArray.Length);
                     Thread.Sleep(400);
                     //Console.WriteLine($"neue position {position} ; neuer teiler {naechsterSchritt}");
                 }
                 else if (eingabe < sortArray[(int)position])
                 {
-                    Console.WriteLine($"alte position {position} ; alter teiler {naechsterSchritt}");
+                    Console.WriteLine($"alte position {(int)position} ; alter teiler {naechsterSchritt}");
                     (position, naechsterSchritt) = LinksLauf((int)position, naechsterSchritt, sortArray.Length);
                     Thread.Sleep(400);
                     //Console.WriteLine($"neue position {position} ; neuer teiler {naechsterSchritt}");
