@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace klassen_Beispiel
+{
+    internal class Person
+    {
+        public string Name;
+        public string Wohnort;
+        public int Geburtsjahr;
+        public int Alter;
+        public void Rauchen(string marke, int stueck)
+        {
+            Console.WriteLine($"{this.Name} gönnt sich erst Mal {stueck} {marke}-Zigaretten...\nTrottel...");
+        }
+        public void Laufen()
+        {
+            Console.WriteLine($"{this.Name} ist superschnell unterwegs!");
+        }
+    }
+}
