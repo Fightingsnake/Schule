@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace klassen_Beispiel
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Person eins = new Person();
+
+            //festlegung des namens
+            Console.Write("Gib bitte deinen Namen ein: ");
+            eins.Name = Console.ReadLine();
+
+            // Festlegung des Alters:
+            Console.Write("Gib bitte dein Alter ein: ");
+            eins.Alter = Convert.ToInt32(Console.ReadLine());
+
+            //laufen lassen:
+            eins.Laufen();
+
+    //        Console.WriteLine("Verrate mir bitte deinen Wohnort: ");
+   //         eins.Wohnort = Console.ReadLine();
+
+           
+            Console.Write("Hattest du dieses Jahr schon Geburtstag?? ( J / N ) ");
+            char antwort = Convert.ToChar(Console.Read());
+            if (antwort == 'j')
+                eins.Geburtsjahr = 2023 - eins.Alter;
+            else if (antwort == 'n')
+                eins.Geburtsjahr = 2022 - eins.Alter;
+            else
+                Console.WriteLine("Die Antwort kenne ich nicht.");
+
+            Console.WriteLine($"Ist {eins.Geburtsjahr} dein Geburtsjahr?");
+
+            eins.Rauchen("Pueblo", 2);
+        }
+    }
+}
